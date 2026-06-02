@@ -1,0 +1,29 @@
+<svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(40,40)">
+    <g transform="rotate(90 0 0)">
+      <circle cx="-17.3" cy="-10" r="6" fill="#2ae585"/>
+      <circle cx="0"     cy="-20" r="6" fill="#2ae585"/>
+      <circle cx="0"     cy="20"  r="6" fill="#2ae585"/>
+      <circle cx="17.3"  cy="10"  r="6" fill="#2ae585"/>
+      <circle cx="-17.3" cy="10"  r="6" fill="#cccccc"/>
+      <circle cx="17.3"  cy="-10" r="6" fill="#cccccc"/>
+
+      <path d="M -17.3 -10 L 0 -20 L 0 20 L 17.3 10"
+            stroke="#2ae585"
+            stroke-width="4"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <text x="90" y="50" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+        font-weight="bold" font-size="36" fill="#333333">
+    Touch<tspan fill="#2ae585">Glyph</tspan>
+  </text>
+
+  <text x="90" y="65" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+        font-size="10" fill="#666666" letter-spacing="1">
+    CONEXIÓN TÁCTIL
+  </text>
+</svg>

@@ -1,0 +1,17 @@
+export const ROUTES = {
+  HOME: '/',
+  LOGIN: '/login',
+  DASHBOARD: '/dashboard',
+  ADMIN_DASHBOARD: '/admin',
+  ADMIN_USERS: '/admin/users',
+  ADMIN_CLASSES: '/admin/classes',
+  ADMIN_CLASS_DETAIL: '/admin/classes/:classId',
+  ADMIN_DEVICES: '/admin/devices',
+  ADMIN_LESSONS: '/admin/lessons',
+  TEACHER_DASHBOARD: '/teacher',
+  TEACHER_CLASSES: '/teacher/classes',
+  TEACHER_STUDENT_DETAIL: '/teacher/student/:studentId',
+  TEACHER_LESSONS: '/teacher/lessons',
+  STUDENT_DASHBOARD: '/student',
+  STUDENT_SESSION: '/student/session/:sessionId',
+} as const;

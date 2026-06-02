@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: #1E293B;
+            color: #ffffff;
+            display: flex;
+            z-index: 1000;
+            align-items: center;
+        }
+
+        header h2 {
+            margin-left: 20px;
+        }
+
+
+
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            grid-template-rows: 3fr 5fr;
+            gap: 10px;
+            margin-top: 60px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 45px;
+        }
+
+
+
+        .test_summary {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .left-parent-grid {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .left-top-grid {
+            grid-row: 1;
+            grid-column: 1 / -1;
+            background: #bae6fd;
+            border-radius: 8px;
+            padding: 16px;
+            color: #0369a1;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .left-bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .left-bottom-grid-item {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 4px rgba(30, 41, 59, 0.05);
+            text-align: center;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left-bottom-grid-item:nth-child(1) {
+            background: #b9cbed;
+            /* light green */
+            color: #323e49;
+            /* dark green text */
+        }
+
+        .left-bottom-grid-item:nth-child(2) {
+            background: #bbf7d0;
+            /* light green */
+            color: #166534;
+            /* dark green text */
+        }
+
+        .left-bottom-grid-item:nth-child(3) {
+            background: #fecaca;
+            /* light red */
+            color: #b91c1c;
+            /* dark red text */
+        }
+
+
+        .left-bottom-grid-item:nth-child(4) {
+            background: #fed7aa;
+            /* light orange */
+            color: #92400e;
+            /* dark orange text */
+        }
+
+        .left-bottom-grid-item p {
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .left-bottom-grid-item span {
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .test_charts {
+            background-color: #e2e2e2;
+            padding: 20px;
+            border-radius: 5px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            grid-template-rows: 5fr 5fr;
+
+
+        }
+
+        .pie {
+
+            grid-row: 1;
+            grid-column: 1;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+
+            display: flex;
+            /* Enable flex layout */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            /* padding: 20px;                 Optional spacing */
+            height: 100%;
+            /* Or a fixed height */
+            width: 100%;
+
+        }
+
+        .pie canvas {
+            width: 200px;
+            height: 200px;
+        }
+
+        .graph {
+            grid-row: 1;
+            grid-column: 2;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+        }
+
+        .bar {
+            grid-row: 2;
+            grid-column: 1 / -1;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+
+            display: flex;
+            /* Enable flex layout */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            height: 100%;
+            /* Or a fixed height */
+            width: 100%;
+        }
+
+        .test_table {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            grid-row: span 2;
+            grid-column: span 1;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #1E293B;
+            color: #cccccc;
+            display: flex;
+            z-index: 1000;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 3fr 5fr 4fr;
+            gap: 10px;
+            align-items: center;
+            height: 100%;
+            margin-left: 15px;
+        }
+
+        .version {
+            align-items: left;
+            justify-content: left;
+            grid-column: 1;
+        }
+        .verison_details {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .author {
+            align-items: right;
+            justify-content: right;
+            grid-column: -1;
+        }
+        .author-name {
+            font-size: 0.9em;
+            color: #ccc;
+        }   
+
+        .test_table h1 {
+            text-align: center;
+        }
+
+        .test_table .filters {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .test_table .filters button {
+            padding: 0.5rem 1rem;
+            margin: 0.2rem;
+            border: none;
+            background-color: #ddd;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .table-scroll-container {
+            max-height: 600px;
+            overflow-x: auto;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .test_table .filters button.active {
+            background-color: #146b9a;
+            color: #fff;
+        }
+
+        .test_table .table-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 2fr 1fr 1fr 3fr;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .test_table .table-grid div {
+            padding: 0.75rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .test_table .table-grid div.header {
+            background-color: #2d6f93;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .test_table .row:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        .test_table .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .test_table .table-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .test_table .table-grid div:nth-child(n+6):not(.header) {
+                display: none;
+            }
+        }
+    </style>
+
+    <title>pytest-htmlx</title>
+</head>
+
+<body>
+    <header>
+        <h2>PYTEST HTMLX REPORT</h2>
+    </header>
+    <div class="container">
+        <div class="test_summary">
+            <div class="left-panel">
+                <div class="left-parent-grid">
+                    <!-- Top grid: summary title, spans all columns -->
+                    <div class="left-top-grid">
+                        <h3 style="margin:0; text-align:center;">Test Case Count Summary</h3>
+                    </div>
+                    <!-- Bottom grid: four items -->
+                    <div class="left-bottom-grid">
+                        <div class="left-bottom-grid-item">
+                            <p>0</p>
+                            <span>Total</span>
+                        </div>
+                        <div class="left-bottom-grid-item">
+                            <p>0</p>
+                            <span>Passed</span>
+                        </div>
+                        <div class="left-bottom-grid-item">
+                            <p>0</p>
+                            <span>Failed</span>
+                        </div>
+                        <div class="left-bottom-grid-item">
+                            <p>0</p>
+                            <span>Skipped</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="test_table">
+            <div class="filters">
+                <button onclick="filterRows('all')" class="active">All</button>
+                <button onclick="filterRows('passed')">Passed</button>
+                <button onclick="filterRows('failed')">Failed</button>
+                <button onclick="filterRows('skipped')">Skipped</button>
+            </div>
+            
+            <div class="table-scroll-container">
+                <div class="table-grid" id="reportTable">
+                    <div class="header">Test Suite</div>
+                    <div class="header">Test Name</div>
+                    <div class="header">Outcome</div>
+                    <div class="header">Duration (s)</div>
+                    <div class="header">Error Message</div>
+                    <!-- Dynamic rows are inserted here by JS -->
+                </div>
+            </div>
+        </div>
+        <div class="test_charts">
+            <div class="pie">
+                <canvas id="resultPieChart" width="200px" height="200px"></canvas>
+            </div>
+            <div class="graph">
+                <canvas id="durationChart" width="200px" height="150px"></canvas>
+            </div>
+            <div class="bar">
+                <canvas id="resultBarChart" width="500px" height="200px"></canvas>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+
+            <div class="version">
+                <div class="verison_details">
+                    Created By <strong>pytest-htmlx</strong><span id="pytest-version"></span> &nbsp;|&nbsp;
+                    <strong>Version:</strong> <span id="pytest-htmlx-version">0.1.2</span>
+                </div>
+            </div>
+
+            <div class="author">
+                <div class="author-name">
+                    <strong>Author:</strong> Devaraju Garigapati &nbsp;|&nbsp;
+                    <a href="https://github.com/devarajug/pytest-htmlx" target="_blank"
+                        style="color:#fff;text-decoration:underline;">pytest-htmlx</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Pie Chart
+        const pieCtx = document.getElementById('resultPieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Passed (0%)',
+                    'Failed (0%)',
+                    'Skipped (0%)'
+                ],
+                datasets: [{
+                    label: 'Test Results',
+                    data: [0, 0, 0],
+                    backgroundColor: ['#28a745', '#dc3545', '#ffc107']
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Test Count Percentage',
+                        font: { size: 12 }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            font: { size: 10 }
+                        }
+                    },
+                    
+                },
+            }
+        });
+
+        const barCtx = document.getElementById('resultBarChart');
+
+        const bar_data = {
+            labels: ["No Suites Found"],
+            datasets: [
+                {
+                    label: 'Passed',
+                    data: [],
+                    backgroundColor: 'rgba(40, 167, 69, 0.8)' // green
+                },
+                {
+                    label: 'Failed',
+                    data: [],
+                    backgroundColor: 'rgba(220, 53, 69, 0.8)' // red
+                },
+                {
+                    label: 'Skipped',
+                    data: [],
+                    backgroundColor: 'rgba(255, 193, 7, 0.8)' // yellow
+                }
+            ]
+        };
+
+        const bar_config = {
+            type: 'bar',
+            data: bar_data,
+            options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Stacked Test Results by Suite'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Test Suites'
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Tests'
+                        }
+                    }
+                }
+            }
+        };
+        new Chart(barCtx, bar_config);
+
+        const line_labels = [];
+        const line_data = {
+            labels: line_labels,
+            datasets: [{
+                label: 'Duration (seconds)',
+                data: [],
+                fill: false,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                tension: 0.3,
+                pointBackgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                pointBorderColor: 'rgba(255, 99, 132, 1)',
+                pointHoverBackgroundColor: 'rgba(255, 99, 132, 1)',
+                pointHoverBorderColor: 'rgba(255, 99, 132, 1)',
+                pointHoverBorderWidth: 2,
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                pointHoverRadius: 5,
+                pointStyle: 'circle',
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        };
+
+        const line_config = {
+            type: 'line',
+            data: line_data,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Test Duration Over Time',
+                    }
+                }
+            }
+        };
+        new Chart(
+            document.getElementById('durationChart'),
+            line_config
+        );
+
+        const testData = [];
+
+        const table = document.getElementById('reportTable');
+
+        function renderRows(data) {
+            // Remove all existing data rows
+            document.querySelectorAll('#reportTable .row').forEach(el => el.remove());
+
+            data.forEach(test => {
+            ['test_suite', 'test_name', 'outcome', 'duration', 'error_message'].forEach(key => {
+                const div = document.createElement('div');
+                div.className = `row ${test.outcome}`;
+                div.textContent = key === 'duration' ? test[key].toFixed(2) : test[key];
+                table.appendChild(div);
+            });
+            });
+        }
+
+        function filterRows(outcome) {
+            const allBtns = document.querySelectorAll('.filters button');
+            allBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.filters button[onclick*="${outcome}"]`).classList.add('active');
+
+            const rows = document.querySelectorAll('#reportTable .row');
+            if (outcome === 'all') {
+            rows.forEach(row => row.classList.remove('hidden'));
+            } else {
+            rows.forEach(row => {
+                if (row.classList.contains(outcome)) {
+                row.classList.remove('hidden');
+                } else {
+                row.classList.add('hidden');
+                }
+            });
+            }
+        }
+
+        renderRows(testData);
+
+    </script>
+</body>
+
+</html>

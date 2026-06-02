@@ -1,0 +1,443 @@
+.devices-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.devices-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.12);
+  border: 1px solid #d1fae5;
+  max-width: 500px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.devices-header {
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.devices-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: white;
+  letter-spacing: -0.2px;
+}
+
+.devices-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin: 0;
+  color: white;
+  font-weight: 400;
+}
+
+.devices-content {
+  padding: 2rem;
+}
+
+/* Status Section */
+.status-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  border: 2px solid;
+}
+
+.connection-status.connected {
+  background: #f0f9f0;
+  border-color: #10b981;
+  color: #065f46;
+}
+
+.connection-status.disconnected {
+  background: #fef0f0;
+  border-color: #e74c3c;
+  color: #7c2d12;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.connected .status-indicator {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+.disconnected .status-indicator {
+  background: #e74c3c;
+  box-shadow: 0 0 6px rgba(231, 76, 60, 0.4);
+}
+
+.active-points {
+  font-size: 0.9rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #d1fae5;
+  color: #374151;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Control Section */
+.control-section {
+  text-align: center;
+}
+
+.control-section h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.1px;
+}
+
+/* Braille Grid */
+.braille-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem auto;
+  max-width: 240px;
+}
+
+.braille-btn {
+  padding: 1.25rem 0.75rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 80px;
+  border: 2px solid transparent;
+  font-family: inherit;
+}
+
+.braille-btn.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-color: #047857;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.braille-btn.inactive {
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  color: #7c2d12;
+  border-color: #fecaca;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.1);
+}
+
+.braille-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.braille-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.point-number {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.point-state {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Letter Section */
+.letter-section {
+  margin: 2rem 0 1.5rem 0;
+}
+
+.letter-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 1rem 0;
+}
+
+.letter-input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.devices-container input[type="text"] {
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 2px solid #d1fae5;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #374151;
+  font-weight: 500;
+  background: white;
+  font-family: inherit;
+  width: 100%;
+}
+
+.devices-container input[type="text"]:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.devices-container input[type="text"]:disabled {
+  background-color: #f8f9fa;
+  color: #6b7280;
+  border-color: #e5e7eb;
+}
+
+.input-hint {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-clear {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
+}
+
+.btn-clear:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+}
+
+.btn-refresh {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.btn-refresh:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.btn-send {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.btn-send:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.btn-back {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  color: white;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.25);
+}
+
+.btn-back:hover {
+  background: linear-gradient(135deg, #4b5563, #374151);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.35);
+}
+
+/* Connection Help */
+.connection-help {
+  background: #fff3cd;
+  padding: 1.25rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border: 1px solid #ffeaa7;
+  text-align: left;
+}
+
+.connection-help h4 {
+  color: #856404;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.connection-help p {
+  color: #856404;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.connection-help ul {
+  color: #856404;
+  padding-left: 1.25rem;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.connection-help li {
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+/* Loading Screen */
+.loading-screen {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #374151;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.loading-screen h2 {
+  margin-bottom: 1rem;
+  color: #111827;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.loading-screen p {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .devices-container {
+    padding: 1rem;
+  }
+  
+  .devices-card {
+    max-width: 100%;
+  }
+  
+  .devices-header {
+    padding: 1.5rem;
+  }
+  
+  .devices-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .devices-content {
+    padding: 1.5rem;
+  }
+  
+  .braille-grid {
+    max-width: 200px;
+    gap: 0.5rem;
+  }
+  
+  .braille-btn {
+    min-height: 70px;
+    padding: 1rem 0.5rem;
+  }
+  
+  .letter-input-group {
+    grid-template-columns: 1fr;
+    max-width: 200px;
+  }
+  
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .devices-container {
+    padding: 0.5rem;
+  }
+  
+  .devices-header {
+    padding: 1.25rem;
+  }
+  
+  .devices-content {
+    padding: 1.25rem;
+  }
+  
+  .braille-grid {
+    max-width: 180px;
+  }
+  
+  .braille-btn {
+    min-height: 65px;
+    font-size: 0.8rem;
+  }
+
+  .connection-status {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

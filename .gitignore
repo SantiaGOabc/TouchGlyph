@@ -1,0 +1,8 @@
+node_modules
+
+# Runtime artifacts
+*.jobid
+backend/run/
+.vscode
+backend/*.pid
+backend/*_console.log
