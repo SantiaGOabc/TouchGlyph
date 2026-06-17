@@ -58,7 +58,7 @@ pipeline {
             steps {
                 dir('frontend') {
                     bat 'npm ci'
-                    bat 'npm run test -- --reporter=junit --outputFile=report.xml'
+                    bat 'npx vitest run --reporter=junit --outputFile=report.xml'
                 }
             }
             post {
@@ -94,7 +94,7 @@ pipeline {
                 dir('e2e') {
                     bat 'npm ci'
                     bat 'npx playwright install --with-deps chromium'
-                    bat 'npx playwright test --reporter=html'
+                    bat 'npx playwright test'
                 }
             }
             post {
