@@ -26,7 +26,7 @@ pipeline {
                     bat 'if exist venv rmdir /s /q venv'
                     bat '"C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m venv venv'
                     bat 'call venv\\Scripts\\activate.bat && pip install -r requirements.txt'
-                    bat 'call venv\\Scripts\\activate.bat && pytest tests/ -v --cov --cov-report=html --cov-report=xml --junitxml=report.xml --html=report.html --self-contained-html'
+                    bat 'call venv\\Scripts\\activate.bat && pytest tests/ -v --cov --cov-report=html:cov_html --cov-report=xml --junitxml=report.xml --html=report.html --self-contained-html'
                 }
             }
             post {
