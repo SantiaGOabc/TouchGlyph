@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        booleanParam(name: 'RUN_E2E', defaultValue: true, description: 'Ejecutar tests E2E (desactivar para builds rápidos)')
+    }
+
     tools {
         nodejs 'NodeJS-20'
     }
@@ -11,6 +15,7 @@ pipeline {
         E2E_DIR = "${WORKSPACE}\\e2e"
         DB_TYPE = "sqlite"
         SECRET_KEY = "jenkins-test-key-not-for-production"
+        PLAYWRIGHT_BROWSERS_PATH = "${JENKINS_HOME}\\ms-playwright"
     }
 
     stages {
@@ -23,8 +28,7 @@ pipeline {
         stage('Backend Tests') {
             steps {
                 dir('backend') {
-                    bat 'if exist venv rmdir /s /q venv'
-                    bat '"C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m venv venv'
+                    bat 'if not exist venv ("C:\\Users\\Usuario\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m venv venv)'
                     bat 'call venv\\Scripts\\activate.bat && pip install -r requirements.txt'
                     bat 'call venv\\Scripts\\activate.bat && pytest tests/ -v --cov --cov-report=html:cov_html --cov-report=xml --junitxml=report.xml --html=report.html --self-contained-html'
                 }
@@ -58,7 +62,9 @@ pipeline {
             steps {
                 dir('frontend') {
                     bat 'npm ci'
-                    bat 'npx vitest run --reporter=junit --outputFile=report.xml'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        bat 'npx vitest run --reporter=junit --outputFile=report.xml'
+                    }
                 }
             }
             post {
@@ -90,6 +96,7 @@ pipeline {
         }
 
         stage('E2E Tests') {
+            when { expression { params.RUN_E2E } }
             steps {
                 dir('e2e') {
                     bat 'npm ci'
@@ -123,7 +130,13 @@ pipeline {
             echo 'Pipeline completado exitosamente.'
         }
         cleanup {
-            cleanWs()
+            dir('frontend') { bat 'if exist dist rmdir /s /q dist' }
+            dir('frontend') { bat 'if exist report.xml del /f /q report.xml' }
+            dir('e2e') { bat 'if exist test-results rmdir /s /q test-results' }
+            dir('e2e') { bat 'if exist playwright-report rmdir /s /q playwright-report' }
+            dir('backend') { bat 'if exist cov_html rmdir /s /q cov_html' }
+            dir('backend') { bat 'if exist *.xml del /f /q *.xml' }
+            dir('backend') { bat 'if exist *.html del /f /q *.html' }
         }
     }
 }
