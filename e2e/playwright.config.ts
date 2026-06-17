@@ -20,7 +20,7 @@ export default defineConfig({
   projects: [
     {
       name: 'Microsoft Edge',
-      use: { ...devices['Desktop Edge'] },
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
     },
   ],
 
