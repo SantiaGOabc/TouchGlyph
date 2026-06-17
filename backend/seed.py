@@ -12,7 +12,7 @@ lessons_data = [
         "description": "Aprender el patrón Braille de la letra A",
         "difficulty": "beginner",
         "steps": [
-            {"step_index": 0, "type": "input", "target": "a", "prompt": "Escribe la letra A (punto 1 arriba a la izquierda)", "hint": "Es solo el punto superior izquierdo", "max_attempts": 3},
+            {"step_index": 0, "type": "input", "target": "a", "prompt": "Escribe la letra A", "hint": "Es solo el punto superior izquierdo", "max_attempts": 3},
             {"step_index": 1, "type": "input", "target": "a", "prompt": "Repite: letra A", "hint": "Mismo patrón, punto 1", "max_attempts": 3},
         ],
     },
@@ -22,7 +22,7 @@ lessons_data = [
         "description": "Aprender el patrón Braille de la letra B",
         "difficulty": "beginner",
         "steps": [
-            {"step_index": 0, "type": "input", "target": "b", "prompt": "Escribe la letra B (puntos 1 y 2 arriba)", "hint": "Son los dos puntos superiores", "max_attempts": 3},
+            {"step_index": 0, "type": "input", "target": "b", "prompt": "Escribe la letra B", "hint": "Son los dos puntos superiores (puntos 1 y 2 arriba)", "max_attempts": 3},
         ],
     },
     {

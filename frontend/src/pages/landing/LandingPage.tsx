@@ -6,6 +6,7 @@ import './LandingPage.css';
 import InicioVideo from './video';
 import IntroVideoCard from './IntroVideoCard';
 import TouchGlyphLogo from '../../components/common/TouchGlyphLogo';
+import LanguageSwitcher from '../../components/common/LanguageSwitcher';
 
 interface Feature {
   icon: React.ReactNode;
@@ -74,6 +75,7 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <a href="#main-content" className="skip-link">{t('nav.skipToContent')}</a>
+      <LanguageSwitcher />
       <section className="hero-section" ref={heroRef}>
         <div className="video-background">
             <InicioVideo ref={videoRef} aria-label={t('landing.heroVideoAria')} />
@@ -105,9 +107,9 @@ const LandingPage = () => {
                 <Play size={22} />
                 <span>{t('landing.login')}</span>
               </Link>
-              <Link to="/solicitud" className="btn btn-secondary btn-large">
+              {/* <Link to="/solicitud" className="btn btn-secondary btn-large">
                 <span>{t('landing.requestAccess')}</span>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -220,9 +222,9 @@ const LandingPage = () => {
               </p>
 
               <div className="cta-buttons">
-                <Link to="/solicitud" className="btn btn-primary btn-xlarge">
+                {/* <Link to="/solicitud" className="btn btn-primary btn-xlarge">
                   {t('landing.requestAccess')}
-                </Link>
+                </Link> */}
                 <Link to="/login" className="btn btn-ghost btn-xlarge">
                   {t('landing.haveAccount')}
                 </Link>
@@ -248,7 +250,7 @@ const LandingPage = () => {
               <div className="link-group">
                 <h4>{t('landing.footerPlatform')}</h4>
                 <Link to="/login">{t('landing.login')}</Link>
-                <Link to="/solicitud">{t('landing.requestAccess')}</Link>
+                {/* <Link to="/solicitud">{t('landing.requestAccess')}</Link> */}
               </div>
 
               <div className="link-group">

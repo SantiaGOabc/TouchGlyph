@@ -36,6 +36,7 @@ const allMenuLinks: Record<string, MenuLink[]> = {
 const LANGUAGES = [
   { code: 'es', label: 'ES' },
   { code: 'en', label: 'EN' },
+  { code: 'qu', label: 'QU' },
 ];
 
 const AppLayout = () => {
