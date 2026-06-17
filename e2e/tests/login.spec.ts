@@ -67,8 +67,8 @@ test.describe('Login Flow', () => {
   });
 
   test('muestra error con credenciales vacías', async ({ page }) => {
-    await page.getByRole('button', { name: /^(ingresar|iniciar sesión)$/i }).first().click();
-    await expect(page.getByRole('alert')).toBeVisible();
+    await page.locator('button[type="submit"]').click();
+    await expect(page.locator('.error-message[role="alert"]')).toBeVisible({ timeout: 3000 });
   });
 
   test('login exitoso como estudiante redirige a /student', async ({ page }) => {

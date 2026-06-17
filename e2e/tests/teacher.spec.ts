@@ -20,13 +20,13 @@ function mockTeacherApi(page) {
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_TEACHER) });
     }),
     page.route('**/api/teacher/classes*', async (route) => {
-      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_CLASSES) });
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ classes: MOCK_CLASSES }) });
     }),
     page.route('**/api/teacher/students*', async (route) => {
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_STUDENTS) });
     }),
     page.route('**/api/teacher/lessons*', async (route) => {
-      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_LESSONS) });
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ lessons: MOCK_LESSONS }) });
     }),
     page.route('**/api/teacher/progress*', async (route) => {
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({}) });

@@ -22,7 +22,7 @@ function mockAdminApi(page) {
     }),
     page.route('**/api/admin/users*', async (route) => {
       if (route.request().method() === 'GET') {
-        await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_USERS) });
+        await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ users: MOCK_USERS }) });
       } else {
         await route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify({ id: 4 }) });
       }
@@ -31,7 +31,7 @@ function mockAdminApi(page) {
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_CLASSES) });
     }),
     page.route('**/api/admin/devices*', async (route) => {
-      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_DEVICES) });
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ devices: MOCK_DEVICES }) });
     }),
     page.route('**/api/admin/teachers*', async (route) => {
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_TEACHERS) });
