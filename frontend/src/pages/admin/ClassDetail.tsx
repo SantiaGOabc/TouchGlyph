@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Users, UserPlus, UserCheck, GraduationCap, ChevronDown } from 'lucide-react';
+import { Users, UserPlus, UserCheck, GraduationCap } from 'lucide-react';
 import api from '../../services/api';
 import { useForm } from '../../hooks/useForm';
 import { useToast } from '../../context/ToastContext';

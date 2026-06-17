@@ -30,16 +30,6 @@ const TeacherLessons = () => {
     enabled: showAvailableModal,
   });
 
-  const deleteMutation = useMutation({
-    mutationFn: (id: number) => api.delete(`/teacher/lessons/${id}`),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['teacherMyLessons'] });
-      queryClient.invalidateQueries({ queryKey: ['availableLessons'] });
-      addToast('Lección eliminada', 'success');
-    },
-    onError: (err: any) => addToast(err.response?.data?.detail || t('teacher.lessonDeleteError'), 'error'),
-  });
-
   const unassignMutation = useMutation({
     mutationFn: (id: number) => api.delete(`/teacher/lessons/${id}/unassign`),
     onSuccess: () => {
@@ -49,12 +39,6 @@ const TeacherLessons = () => {
     },
     onError: (err: any) => addToast(err.response?.data?.detail || t('teacher.lessonUnassignError'), 'error'),
   });
-
-  const handleDeleteLesson = (lessonId: number) => {
-    if (window.confirm(t('teacher.confirmDeleteLesson'))) {
-      deleteMutation.mutate(lessonId);
-    }
-  };
 
   const handleUnassignLesson = (lessonId: number) => {
     if (window.confirm(t('teacher.confirmUnassignLesson'))) {

@@ -2,12 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT } from '../constants/roles';
 
-interface CardProps {
-  to: string;
-  title: string;
-  desc: string;
-}
-
 const cardStyle: React.CSSProperties = {
   border: '1px solid #ddd',
   borderRadius: '8px',

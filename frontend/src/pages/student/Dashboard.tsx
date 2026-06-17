@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, Star, Trophy, CheckCircle, Play, Filter, RefreshCw } from 'lucide-react';
+import { BookOpen, Star, Trophy, CheckCircle, Filter, RefreshCw } from 'lucide-react';
 import api from '../../services/api';
 import { useSpeech } from '../../hooks/useSpeech';
 import { useToast } from '../../context/ToastContext';

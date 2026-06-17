@@ -17,7 +17,7 @@ export default [
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
-      globals: globals.browser,
+      globals: { ...globals.browser, React: 'readonly' },
     },
     plugins: {
       '@typescript-eslint': tseslint,
@@ -29,6 +29,7 @@ export default [
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/no-explicit-any': 'off',
+      'no-empty': ['error', { allowEmptyCatch: true }],
     },
   },
   {

@@ -5,7 +5,6 @@ import api from '../../services/api';
 import { useToast } from '../../context/ToastContext';
 import Modal from '../../components/Modal';
 
-const initialForm = { title: '', description: '', difficulty: 'beginner', priority: 1 };
 const initialStep = { type: 'input' as const, target: '', prompt: '', hint: '', max_attempts: 3 };
 
 interface Step { type: string; target: string; prompt: string; hint: string; max_attempts: number; }
