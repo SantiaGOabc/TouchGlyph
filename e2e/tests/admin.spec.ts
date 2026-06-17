@@ -13,6 +13,7 @@ const MOCK_CLASSES = [
 const MOCK_DEVICES = [
   { id: 'esp32-01', name: 'Display Aula 1', assigned_user_id: null, active: 1, last_seen: '2026-06-17T10:00:00Z' },
 ];
+const MOCK_TEACHERS = MOCK_USERS.filter(u => u.role === 'teacher');
 
 function mockAdminApi(page) {
   return Promise.all([
@@ -31,6 +32,9 @@ function mockAdminApi(page) {
     }),
     page.route('**/api/admin/devices*', async (route) => {
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_DEVICES) });
+    }),
+    page.route('**/api/admin/teachers*', async (route) => {
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MOCK_TEACHERS) });
     }),
     page.route('**/api/admin/lessons*', async (route) => {
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify([]) });

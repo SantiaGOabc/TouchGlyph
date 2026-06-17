@@ -63,11 +63,11 @@ test.describe('Login Flow', () => {
     await expect(page.getByRole('heading', { name: /inicia sesión|bienvenido/i })).toBeVisible();
     await expect(page.locator('#username')).toBeVisible();
     await expect(page.locator('#password')).toBeVisible();
-    await expect(page.getByRole('button', { name: /ingresar|iniciar sesión/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /^(ingresar|iniciar sesión)$/i }).first()).toBeVisible();
   });
 
   test('muestra error con credenciales vacías', async ({ page }) => {
-    await page.getByRole('button', { name: /ingresar|iniciar sesión/i }).click();
+    await page.getByRole('button', { name: /^(ingresar|iniciar sesión)$/i }).first().click();
     await expect(page.getByRole('alert')).toBeVisible();
   });
 
@@ -77,7 +77,7 @@ test.describe('Login Flow', () => {
 
     await page.locator('#username').fill('student1');
     await page.locator('#password').fill('studentpass');
-    await page.getByRole('button', { name: /ingresar|iniciar sesión/i }).click();
+    await page.getByRole('button', { name: /^(ingresar|iniciar sesión)$/i }).first().click();
 
     await page.waitForURL('**/student');
   });
@@ -88,7 +88,7 @@ test.describe('Login Flow', () => {
 
     await page.locator('#username').fill('teacher1');
     await page.locator('#password').fill('teacherpass');
-    await page.getByRole('button', { name: /ingresar|iniciar sesión/i }).click();
+    await page.getByRole('button', { name: /^(ingresar|iniciar sesión)$/i }).first().click();
 
     await page.waitForURL('**/teacher');
   });
@@ -99,7 +99,7 @@ test.describe('Login Flow', () => {
 
     await page.locator('#username').fill('admin1');
     await page.locator('#password').fill('adminpass');
-    await page.getByRole('button', { name: /ingresar|iniciar sesión/i }).click();
+    await page.getByRole('button', { name: /^(ingresar|iniciar sesión)$/i }).first().click();
 
     await page.waitForURL('**/admin');
   });
@@ -115,7 +115,7 @@ test.describe('Login Flow', () => {
 
     await page.locator('#username').fill('baduser');
     await page.locator('#password').fill('badpass');
-    await page.getByRole('button', { name: /ingresar|iniciar sesión/i }).click();
+    await page.getByRole('button', { name: /^(ingresar|iniciar sesión)$/i }).first().click();
 
     await expect(page.getByRole('alert')).toContainText(/credenciales inválidas|inválidas/i);
   });

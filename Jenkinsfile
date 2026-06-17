@@ -93,7 +93,7 @@ pipeline {
             steps {
                 dir('e2e') {
                     bat 'npm ci'
-                    bat 'npx playwright install --with-deps chromium'
+                    bat 'npx playwright install --with-deps msedge'
                     bat 'npx playwright test'
                 }
             }
