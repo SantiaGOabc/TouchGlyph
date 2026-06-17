@@ -6,7 +6,7 @@ mysql-connector-python==8.3.0
 PyJWT==2.8.0
 python-dotenv==1.0.1
 pydantic==2.6.3
-numpy>=1.26.4,<3
+numpy>=1.26.4,<2
 opencv-python==4.9.0.80
 deepface==0.0.79
 tf-keras>=2.15,<3
