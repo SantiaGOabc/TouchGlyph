@@ -22,28 +22,29 @@ class TestTogglePoint:
 
     def test_lowest_boundary(self, service, mock_client):
         mock_client.toggle_punto.return_value = {"ok": True}
-        result = service.toggle_point(1)
-        mock_client.toggle_punto.assert_called_once_with(1)
+        result = service.toggle_point(0)
+        mock_client.toggle_punto.assert_called_once_with(0)
         assert result == {"ok": True}
 
     def test_highest_boundary(self, service, mock_client):
         mock_client.toggle_punto.return_value = {"ok": True}
-        result = service.toggle_point(6)
-        mock_client.toggle_punto.assert_called_once_with(6)
+        result = service.toggle_point(5)
+        mock_client.toggle_punto.assert_called_once_with(5)
+        assert result == {"ok": True}
 
     def test_below_range(self, service, mock_client):
-        result = service.toggle_point(0)
-        assert result == {"error": "El punto debe estar entre 1 y 6"}
+        result = service.toggle_point(-1)
+        assert result == {"error": "El punto debe estar entre 0 y 5"}
         mock_client.toggle_punto.assert_not_called()
 
     def test_above_range(self, service, mock_client):
-        result = service.toggle_point(7)
-        assert result == {"error": "El punto debe estar entre 1 y 6"}
+        result = service.toggle_point(6)
+        assert result == {"error": "El punto debe estar entre 0 y 5"}
         mock_client.toggle_punto.assert_not_called()
 
     def test_negative(self, service, mock_client):
         result = service.toggle_point(-3)
-        assert result == {"error": "El punto debe estar entre 1 y 6"}
+        assert result == {"error": "El punto debe estar entre 0 y 5"}
 
 # Send letter
 class TestSendLetter:
