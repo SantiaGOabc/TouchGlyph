@@ -1,7 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
-import type { SerenityFixtures, SerenityWorkerFixtures } from '@serenity-js/playwright-test';
 
-export default defineConfig<SerenityFixtures, SerenityWorkerFixtures>({
+export default defineConfig({
   testDir: './tests',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
@@ -23,9 +22,6 @@ export default defineConfig<SerenityFixtures, SerenityWorkerFixtures>({
     trace: 'on-first-retry',
     screenshot: 'on',
     video: 'on',
-    crew: [
-      ['@serenity-js/web:Photographer', { strategy: 'TakePhotosOfFailures' }],
-    ],
   },
 
   projects: [
