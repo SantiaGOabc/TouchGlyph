@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@serenity-js/playwright-test';
 
 const MOCK_TEACHER = { id: 2, username: 'teacher1', full_name: 'Profesor Uno', role: 'teacher' };
 const MOCK_CLASSES = [

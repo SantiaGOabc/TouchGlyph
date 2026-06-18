@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import type { SerenityFixtures, SerenityWorkerFixtures } from '@serenity-js/playwright-test';
 
-export default defineConfig({
+export default defineConfig<SerenityFixtures, SerenityWorkerFixtures>({
   testDir: './tests',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
@@ -8,13 +9,20 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 1,
   reporter: [
     ['html', { outputFolder: 'playwright-report' }],
+    ['@serenity-js/playwright-test', {
+      crew: [
+        '@serenity-js/console-reporter',
+        ['@serenity-js/serenity-bdd', { specDirectory: './tests' }],
+        ['@serenity-js/core:ArtifactArchiver', { outputDirectory: './reports/serenity' }],
+      ]
+    }],
     ['junit', { outputFile: 'test-results/junit.xml' }],
   ],
   use: {
     baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',
     screenshot: 'on',
-    video: 'retain-on-failure',
+    video: 'on',
   },
 
   projects: [

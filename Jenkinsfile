@@ -102,6 +102,7 @@ pipeline {
                     bat 'npm ci'
                     bat 'npx playwright install --with-deps msedge'
                     bat 'npx playwright test'
+                    bat 'npx serenity-bdd run --features ./tests --source ./reports/serenity --destination ./reports/serenity'
                 }
             }
             post {
@@ -114,6 +115,14 @@ pipeline {
                         reportDir: 'e2e/playwright-report',
                         reportFiles: 'index.html',
                         reportName: 'E2E Test Report'
+                    ])
+                    publishHTML(target: [
+                        allowMissing: true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'e2e/reports/serenity',
+                        reportFiles: 'index.html',
+                        reportName: 'Serenity BDD Report'
                     ])
                 }
             }

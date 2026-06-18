@@ -7,9 +7,15 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "report": "playwright show-report",
-    "codegen": "playwright codegen"
+    "codegen": "playwright codegen",
+    "serenity-report": "serenity-bdd run --features ./tests --source ./reports/serenity --destination ./reports/serenity"
   },
   "devDependencies": {
-    "@playwright/test": "^1.52.0"
+    "@playwright/test": "~1.60.0",
+    "@serenity-js/console-reporter": "^3.44.0",
+    "@serenity-js/core": "^3.44.0",
+    "@serenity-js/playwright-test": "^3.44.0",
+    "@serenity-js/serenity-bdd": "^3.44.0",
+    "@serenity-js/web": "^3.44.0"
   }
 }
