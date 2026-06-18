@@ -26,6 +26,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run backend tests with coverage
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: pytest tests/ -v --cov --cov-report=html --html=report.html --self-contained-html
 
       - name: Upload coverage report
