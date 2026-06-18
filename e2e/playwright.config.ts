@@ -23,6 +23,9 @@ export default defineConfig<SerenityFixtures, SerenityWorkerFixtures>({
     trace: 'on-first-retry',
     screenshot: 'on',
     video: 'on',
+    crew: [
+      ['@serenity-js/web:Photographer', { strategy: 'TakePhotosOfFailures' }],
+    ],
   },
 
   projects: [
