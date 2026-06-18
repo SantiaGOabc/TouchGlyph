@@ -107,8 +107,6 @@ pipeline {
             post {
                 always {
                     junit allowEmptyResults: true, testResults: 'e2e/test-results/**/*.xml'
-                }
-                success {
                     publishHTML(target: [
                         allowMissing: true,
                         alwaysLinkToLastBuild: true,

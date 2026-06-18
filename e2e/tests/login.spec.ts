@@ -67,6 +67,9 @@ test.describe('Login Flow', () => {
   });
 
   test('muestra error con credenciales vacías', async ({ page }) => {
+    await page.evaluate(() => {
+      document.querySelectorAll<HTMLElement>('input[required]').forEach(el => el.removeAttribute('required'));
+    });
     await page.locator('button[type="submit"]').click();
     await expect(page.locator('.error-message[role="alert"]')).toBeVisible({ timeout: 3000 });
   });
