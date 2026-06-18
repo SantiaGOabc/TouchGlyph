@@ -16,6 +16,5 @@ e2e/.auth/
 # Frontend build
 frontend/dist/
 frontend/node_modules/
-frontend/.env
 backend/.env
 e2e/.env
